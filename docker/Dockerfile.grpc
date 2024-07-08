@@ -1,0 +1,19 @@
+FROM python:3.9-buster as build
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev
+
+RUN python3 -m pip install grpcio-tools
+
+COPY protos /app/protos
+COPY server /app/server
+
+WORKDIR /app/protos
+RUN chmod +x build.sh && ./build.sh
+
+WORKDIR /app
+EXPOSE 7878
+
+# CMD ["PYTHONPATH=.", "python", "server/hello.py"]
+CMD ["python", "-m", "server.hello"]
