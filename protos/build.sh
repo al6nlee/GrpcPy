@@ -6,7 +6,7 @@ for SERVICE in "${services[@]}"; do
     echo "Compiling service: $SERVICE"
 
     # 设置目标目录
-    DESTDIR="../services/$SERVICE"
+    DESTDIR="../generated/$SERVICE"
 
     # 确保目标目录存在，如果不存在则创建它
     mkdir -p $DESTDIR
