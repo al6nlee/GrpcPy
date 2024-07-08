@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y \
 
 COPY protos /app/protos
 COPY server /app/server
-COPY services /app/services
 COPY requirements.txt /app/requirements.txt
 
 RUN python3 -m pip install grpcio-tools \
@@ -17,5 +16,4 @@ RUN cd protos && chmod +x build.sh && ./build.sh
 
 EXPOSE 7878
 
-# CMD ["PYTHONPATH=.", "python", "server/hello.py"]
 CMD ["python", "-m", "server.hello"]
