@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a services=("hello")
+declare -a services=("hello" "user")
 
 for SERVICE in "${services[@]}"; do
     echo "Compiling service: $SERVICE"
