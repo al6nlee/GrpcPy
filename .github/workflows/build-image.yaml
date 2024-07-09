@@ -1,4 +1,4 @@
-name: CI/CD to Docker Hub
+name: 构建docker镜像并推送
 
 on:
   push:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 从GitHub仓库中检出代码
         uses: actions/checkout@v2
 
-      - name: Set up QEMU
+      - name: 设置QEMU
         uses: docker/setup-qemu-action@v2
 
-      - name: Set up Docker Buildx
+      - name: 设置 Docker Buildx (用于构建多平台镜像)
         uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
@@ -30,5 +30,5 @@ jobs:
         with:
           context: .
           file: ./docker/Dockerfile.grpc
-          push: true
+          push: true             # 表示构建完成后自动推送镜像
           tags: ${{ secrets.DOCKER_USERNAME }}/grpcpy:latest
