@@ -37,5 +37,5 @@ jobs:
           file: ./docker/Dockerfile.grpc
           push: true             # 表示构建完成后自动推送镜像
           tags: |
+            ${{ secrets.DOCKER_USERNAME }}/grpcpy:${{ env.DATETIME }}_${{ env.SHORT_SHA }}
             ${{ secrets.DOCKER_USERNAME }}/grpcpy:latest
-            ${{ secrets.DOCKER_USERNAME }}/grpcpy:${{ env.DATETIME }}_${{ github.SHORT_SHA }}
