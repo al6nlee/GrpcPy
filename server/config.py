@@ -12,6 +12,7 @@ def load_config(key, default=None):
     return global_conf.get(key, default)
 
 
+SERVER_MAX_WORKERS = load_config("SERVER_MAX_WORKERS", 10)
 SERVER_PORT = load_config("PORT", 7878)
 
 # MYSQL global_conf
