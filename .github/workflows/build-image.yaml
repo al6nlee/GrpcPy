@@ -28,7 +28,7 @@ jobs:
       - name: Set short SHA and datetime
         run: |
           echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
-          echo "DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+          echo "DATETIME=$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
@@ -37,5 +37,5 @@ jobs:
           file: ./docker/Dockerfile.grpc
           push: true             # 表示构建完成后自动推送镜像
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/grpcpy:${{ env.DATETIME }}_${{ env.SHORT_SHA }}
+            ${{ secrets.DOCKER_USERNAME }}/grpcpy:v1_${{ env.DATETIME }}_${{ env.SHORT_SHA }}
             ${{ secrets.DOCKER_USERNAME }}/grpcpy:latest
